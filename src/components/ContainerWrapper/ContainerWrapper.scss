@@ -1,0 +1,12 @@
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100px;
+  padding: 20px;
+  border: 1px solid #ffb400;
+  border-radius: 8px;
+
+  background-color: #fff;
+  box-shadow: 0rem 0.5rem 2rem rgba(0, 0, 0, 0.25);
+}

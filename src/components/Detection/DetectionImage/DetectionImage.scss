@@ -1,0 +1,25 @@
+.detection-image-container {
+  .top-content {
+    .image-detect-main {
+      img {
+        border: 1px solid #ffb400;
+        width: 300px;
+        cursor: pointer;
+      }
+    }
+
+    .icon-action {
+      cursor: pointer;
+    }
+  }
+
+  .bottom-content {
+    .image-detect-small {
+      img {
+        border: 1px solid #ffb400;
+        width: 100px;
+        cursor: pointer;
+      }
+    }
+  }
+}

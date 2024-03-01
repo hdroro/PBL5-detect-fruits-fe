@@ -1,7 +1,9 @@
 const routes = {
   home: "/",
   login: "/login",
-  register: "/register",
+  detection: "/detection",
+  devices: "/devices",
+  statistics: "/statistics",
   changepassword: "/user/change-password",
 };
 
