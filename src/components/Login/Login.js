@@ -54,7 +54,7 @@ function Login() {
   return (
     <div className="form-login ">
       <div className="title">Login</div>
-      <div class="mb-3">
+      <div class="mb-3 text-white-color ">
         <label for="email" class="form-label">
           Email address <span className="shrink-star">(*)</span>
         </label>
@@ -70,11 +70,11 @@ function Login() {
           />
         </div>
       </div>
-      <div className="mb-3">
+      <div className="mb-3 text-white-color">
         <label for="password" className="form-label">
           Password <span className="shrink-star">(*)</span>
         </label>
-        <div className="form-group d-flex align-items-center">
+        <div className="form-group d-flex align-items-center bg-white-color">
           <input
             type={`${isToggleassword ? "text" : "password"}`}
             className={`form-control ${

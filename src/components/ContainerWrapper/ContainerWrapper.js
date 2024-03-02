@@ -1,7 +1,7 @@
 import "./ContainerWrapper.scss";
 
-function ContainerWrapper({ children }) {
-  return <div className="container-wrapper">{children}</div>;
+function ContainerWrapper({ children, className }) {
+  return <div className={`container-wrapper ${className}`}>{children}</div>;
 }
 
 export default ContainerWrapper;
