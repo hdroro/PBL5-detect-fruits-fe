@@ -41,6 +41,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        style={{ zIndex: 9999999 }}
       />
     </>
   );

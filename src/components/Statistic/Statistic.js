@@ -12,7 +12,7 @@ import "./Statistic.scss";
 function Statistic() {
   return (
     <div className="statistic-container pt-4">
-      <div className="container">
+      <div className="container mt-5">
         <div className="filer d-flex align-items-center gap-2">
           <FilterIcon />
           <div className="lg-2">
@@ -26,7 +26,7 @@ function Statistic() {
           </div>
         </div>
 
-        <div className="cell-statistics mt-3">
+        <div className="cell-statistics mt-2">
           <div className="row">
             <div className="col-lg-4 col-sm-6 ">
               <div className="card-box bg-total">
@@ -72,7 +72,7 @@ function Statistic() {
           </div>
         </div>
 
-        <div className="chart-statictis mt-3">
+        <div className="chart-statictis mt-3 mb-3">
           <div className="row">
             <div class="col-lg-8 col-md-8 col-sm-12">
               <ContainerWrapper className="border-0">

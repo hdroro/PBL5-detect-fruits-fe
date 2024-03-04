@@ -3,8 +3,10 @@ import { useState } from "react";
 import { EyeIconClose, EyeIconOpen } from "../Icon/Icon";
 import "./Login.scss";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [passWord, setPassWord] = useState("");
 
@@ -44,13 +46,23 @@ function Login() {
     return true;
   };
 
-  const handleSave = () => {
+  const handleLogin = () => {
     const check = isValidInputs();
     if (check) {
       console.log("email", email, "password", passWord);
+      if (email === "admin@gmail.com" && passWord === "admin@123") {
+        toast.success("Login successfully!");
+        history.push("/devices");
+      } else {
+        toast.error("The email address or password is incorrect!");
+      }
     }
   };
-
+  const handlePressEnter = (event) => {
+    if (event.charCode === 13 && event.code === "Enter") {
+      handleLogin();
+    }
+  };
   return (
     <div className="form-login ">
       <div className="title">Login</div>
@@ -83,6 +95,7 @@ function Login() {
             id="password"
             value={passWord}
             onChange={(e) => setPassWord(e.target.value)}
+            onKeyPress={(event) => handlePressEnter(event)}
           />
           {isToggleassword ? (
             <EyeIconOpen
@@ -101,7 +114,7 @@ function Login() {
       <div className="d-flex gap-2 justify-content-end">
         <button
           className="btn btn-warning btn-login"
-          onClick={() => handleSave()}
+          onClick={() => handleLogin()}
         >
           Login
         </button>

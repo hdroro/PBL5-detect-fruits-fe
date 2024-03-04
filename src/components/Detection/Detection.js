@@ -6,7 +6,7 @@ import ListResultDetection from "./ListResultDetection/ListResultDetection";
 function Detection() {
   return (
     <div className="detection-container pt-5 pb-3">
-      <div className="container">
+      <div className="container mt-5">
         <div className="row">
           <div class="col-lg-9 col-md-9 col-sm-12">
             <ContainerWrapper>

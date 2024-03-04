@@ -16,7 +16,7 @@ function Devices() {
   };
   return (
     <div className="devices-container pt-4 pb-3">
-      <div className="container p-3">
+      <div className="container mt-5 p-3">
         <div class="row">
           <div class="col-md-4">
             <ContainerWrapper>
