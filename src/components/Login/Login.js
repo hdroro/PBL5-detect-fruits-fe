@@ -66,8 +66,8 @@ function Login() {
   return (
     <div className="form-login ">
       <div className="title">Login</div>
-      <div class="mb-3 text-white-color ">
-        <label for="email" class="form-label">
+      <div className="mb-3 text-white-color ">
+        <label for="email" className="form-label">
           Email address <span className="shrink-star">(*)</span>
         </label>
         <div className="form-group">

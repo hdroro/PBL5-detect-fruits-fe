@@ -54,6 +54,13 @@
       color: #ffb400 !important;
       border-bottom: 3px solid #ffb400;
     }
+    + .nav-link {
+      margin-left: 20px;
+    }
+  }
+
+  .nav-link:last-child {
+    margin-left: 20px;
   }
 
   a,
@@ -63,6 +70,7 @@
 
   .dropdown-toggle {
     color: #212529 !important;
+    margin-left: 20px;
   }
 }
 
