@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Checkicon,
   ChevDownIcon,
@@ -8,7 +8,7 @@ import {
 import "./ListResultDetection.scss";
 import ResultItem from "./ResultItem";
 
-function ListResultDetection() {
+function ListResultDetection({ data }) {
   const [isToggleListResult, setIsToggleResult] = useState(true);
 
   const handleToggleListResult = () => {
@@ -27,9 +27,9 @@ function ListResultDetection() {
           <ChevRightIcon width="20" height="20" color="#e8b12d" />
         )}
       </div>
-      {isToggleListResult ? (
+      {isToggleListResult && data ? (
         <div className="list-results mt-3">
-          <ResultItem leftIcon={<Checkicon color="#15CB53" />}>
+          {/* <ResultItem leftIcon={<Checkicon color="#15CB53" />}>
             <div className="d-flex flex-column">
               <span className="text-start">Đạt</span>
               <span className="time">17:50:13 21-02-2024</span>
@@ -40,7 +40,17 @@ function ListResultDetection() {
               <span className="text-start">Không đạt</span>
               <span className="time">17:50:13 21-02-2024</span>
             </div>
-          </ResultItem>
+          </ResultItem> */}
+          {data.map((item, index) => {
+            return (
+              <ResultItem leftIcon={<Checkicon color="#15CB53" />}>
+                <div className="d-flex flex-column">
+                  <span className="text-start">{item.status}</span>
+                  <span className="time">{item.time}</span>
+                </div>
+              </ResultItem>
+            );
+          })}
         </div>
       ) : (
         <></>
