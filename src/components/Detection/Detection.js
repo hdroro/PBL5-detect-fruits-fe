@@ -18,7 +18,7 @@ function Detection() {
                 </div>
                 <DetectionImage />
                 <div className="final-result text-center mt-3">
-                  <b>Kết quả: </b>Đạt
+                  <b>Kết quả: </b>Không Đạt
                 </div>
               </div>
             </ContainerWrapper>

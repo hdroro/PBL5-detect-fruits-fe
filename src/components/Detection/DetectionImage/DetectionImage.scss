@@ -8,6 +8,24 @@
       }
     }
 
+    .back-left {
+      transition: transform 0.3s ease;
+    }
+
+    .back-left:hover {
+      opacity: 0.5;
+      transform: translateX(-3px);
+    }
+
+    .back-right {
+      transition: transform 0.3s ease;
+    }
+
+    .back-right:hover {
+      opacity: 0.5;
+      transform: translateX(3px);
+    }
+
     .icon-action {
       cursor: pointer;
     }
@@ -20,6 +38,18 @@
         width: 100px;
         cursor: pointer;
       }
+    }
+
+    .image-detect-small {
+      overflow: hidden;
+    }
+
+    .image-detect-small {
+      transition: transform 0.3s ease;
+    }
+
+    .image-detect-small:hover {
+      transform: scale(1.05);
     }
   }
 }
