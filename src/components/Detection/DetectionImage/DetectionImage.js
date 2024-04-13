@@ -5,13 +5,13 @@ import "./DetectionImage.scss";
 
 function DetectionImage({ images }) {
   const imageRef = useRef();
-  const changeSrcImage1 = () => {
-    console.log("imaeg1");
-    imageRef.current.src = `data:image/png;base64,${images.image1}`;
-  };
-  const changeSrcImage2 = () => {
-    console.log("imaeg2");
-    imageRef.current.src = `data:image/png;base64,${images.image2}`;
+  // const changeSrcImage1 = () => {
+  //   console.log("imaeg1");
+  //   imageRef.current.src = `data:image/png;base64,${images.image1}`;
+  // };
+  const changeSrcImage = (image_path) => {
+    console.log("image");
+    imageRef.current.src = `data:image/png;base64,${image_path}`;
   };
   return (
     <div className="detection-image-container">
@@ -22,7 +22,10 @@ function DetectionImage({ images }) {
         <div className="image-detect-main">
           <img
             ref={imageRef}
-            src={images && `data:image/png;base64,${images.image1}`}
+            src={
+              images &&
+              `data:image/png;base64,${images["list_images"][0]["image_path"]}`
+            }
             alt=""
           />
         </div>
@@ -31,7 +34,22 @@ function DetectionImage({ images }) {
         </div>
       </div>
       <div className="bottom-content mt-4 d-flex justify-content-center gap-3">
-        <div className="image-detect-small" onClick={changeSrcImage1}>
+        {images &&
+          images["list_images"].map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="image-detect-small"
+                onClick={() => changeSrcImage(item["image_path"])}
+              >
+                <img
+                  src={images && `data:image/png;base64,${item["image_path"]}`}
+                  alt=""
+                />
+              </div>
+            );
+          })}
+        {/* <div className="image-detect-small" onClick={changeSrcImage1}>
           <img
             src={images && `data:image/png;base64,${images.image1}`}
             alt=""
@@ -42,7 +60,7 @@ function DetectionImage({ images }) {
             src={images && `data:image/png;base64,${images.image2}`}
             alt=""
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -3,13 +3,14 @@ import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: "rasp-c218c.firebaseapp.com",
-  databaseURL: "https://rasp-c218c-default-rtdb.firebaseio.com",
-  projectId: "rasp-c218c",
-  storageBucket: "rasp-c218c.appspot.com",
-  messagingSenderId: "28017357792",
-  appId: "1:28017357792:web:f7a55ee34fc4da72c63185",
-  measurementId: "G-0EKZL2989Z",
+  authDomain: "raspfruit2024.firebaseapp.com",
+  databaseURL:
+    "https://raspfruit2024-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "raspfruit2024",
+  storageBucket: "raspfruit2024.appspot.com",
+  messagingSenderId: "890319740534",
+  appId: "1:890319740534:web:0bdb3e0a63ed4195188957",
+  measurementId: "G-EWV1GGTZ4M",
 };
 
 const app = initializeApp(firebaseConfig);

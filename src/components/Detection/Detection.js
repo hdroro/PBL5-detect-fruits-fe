@@ -8,8 +8,9 @@ import { useEffect, useState } from "react";
 import { getDatabase, ref, child, get, onValue } from "firebase/database";
 
 function Detection() {
-  const [images, setImages] = useState([]);
-  const [latestImage, setLatestImage] = useState(null);
+  const [imageData, setImageData] = useState();
+  const [imageKeyList, setImageKeyList] = useState([]);
+  const [currentImages, setCurrentImages] = useState(null);
 
   useEffect(() => {
     const dbRef = ref(database);
@@ -18,17 +19,19 @@ function Detection() {
       get(child(dbRef, "images_info"))
         .then((snapshot) => {
           if (snapshot.exists()) {
-            const imageData = snapshot.val();
-            if (imageData) {
-              const imageList = Object.values(imageData);
-              setImages(imageList);
+            const imageInfo = snapshot.val();
+            console.log(imageInfo);
+            if (imageInfo) {
+              setImageData(imageInfo);
+              const keyList = Object.keys(imageInfo).reverse();
+              // console.log(keyList);
+              setImageKeyList(keyList);
 
-              // Lấy hình ảnh mới nhất từ danh sách
-              const latestImageData = imageList[imageList.length - 1];
-              setLatestImage(latestImageData);
+              // Lấy hình ảnh mới nhất từ danh sáchs
+              setCurrentImages(imageInfo[keyList[0]]);
             } else {
-              setImages([]);
-              setLatestImage(null);
+              setImageKeyList([]);
+              setCurrentImages(null);
             }
           }
         })
@@ -38,8 +41,10 @@ function Detection() {
     });
   }, []);
 
-  console.log(images);
-  console.log(latestImage);
+  const handleOnChangeImage = (key) => {
+    console.log("change key:s", key);
+    setCurrentImages(imageData[key]);
+  };
 
   return (
     <div className="detection-container pt-5 pb-3">
@@ -50,20 +55,28 @@ function Detection() {
               <div className="p-4 pb-0">
                 <div className="time-detection text-center mb-4 ">
                   <span className="fst-italic">
-                    Thời gian nhận diện: {latestImage && latestImage.time}
+                    Thời gian nhận diện:{" "}
+                    {currentImages &&
+                      currentImages["time_predict"].split(".")[0]}
                   </span>
                 </div>
-                <DetectionImage images={latestImage && latestImage} />
+                <DetectionImage images={currentImages && currentImages} />
                 <div className="final-result text-center mt-3">
                   <b>Kết quả: </b>
-                  {latestImage && latestImage.status}
+                  {currentImages && currentImages.result == 0
+                    ? "Đạt"
+                    : "Không đạt"}
                 </div>
               </div>
             </ContainerWrapper>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-0">
             <ContainerWrapper>
-              <ListResultDetection data={images} />
+              <ListResultDetection
+                handleOnChangeImage={handleOnChangeImage}
+                keyList={imageKeyList}
+                imageData={imageData}
+              />
             </ContainerWrapper>
           </div>
         </div>

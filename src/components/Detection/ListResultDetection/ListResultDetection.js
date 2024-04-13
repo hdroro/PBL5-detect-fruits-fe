@@ -8,7 +8,7 @@ import {
 import "./ListResultDetection.scss";
 import ResultItem from "./ResultItem";
 
-function ListResultDetection({ data }) {
+function ListResultDetection({ keyList, handleOnChangeImage, imageData }) {
   const [isToggleListResult, setIsToggleResult] = useState(true);
 
   const handleToggleListResult = () => {
@@ -27,26 +27,28 @@ function ListResultDetection({ data }) {
           <ChevRightIcon width="20" height="20" color="#e8b12d" />
         )}
       </div>
-      {isToggleListResult && data ? (
+      {isToggleListResult && keyList ? (
         <div className="list-results mt-3">
-          {/* <ResultItem leftIcon={<Checkicon color="#15CB53" />}>
-            <div className="d-flex flex-column">
-              <span className="text-start">Đạt</span>
-              <span className="time">17:50:13 21-02-2024</span>
-            </div>
-          </ResultItem>
-          <ResultItem leftIcon={<CloseIcon color="#E81919" />}>
-            <div className="d-flex flex-column">
-              <span className="text-start">Không đạt</span>
-              <span className="time">17:50:13 21-02-2024</span>
-            </div>
-          </ResultItem> */}
-          {data.map((item, index) => {
+          {keyList.map((item, index) => {
             return (
-              <ResultItem leftIcon={<Checkicon color="#15CB53" />}>
+              <ResultItem
+                key={index}
+                handleOnChangeImage={() => handleOnChangeImage(item)}
+                leftIcon={
+                  imageData[item].result == 0 ? (
+                    <Checkicon color="#15CB53" />
+                  ) : (
+                    <CloseIcon color="red" />
+                  )
+                }
+              >
                 <div className="d-flex flex-column">
-                  <span className="text-start">{item.status}</span>
-                  <span className="time">{item.time}</span>
+                  <span className="text-start">
+                    {imageData[item].result == 0 ? "Đạt" : "Không đạt"}
+                  </span>
+                  <span className="time">
+                    {imageData[item]["time_predict"].split(".")[0]}
+                  </span>
                 </div>
               </ResultItem>
             );
