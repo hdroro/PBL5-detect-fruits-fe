@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import images from "../../../assets/images";
 import { ChevLeftIcon, ChevRightIcon } from "../../Icon/Icon";
 import "./DetectionImage.scss";
 

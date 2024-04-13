@@ -26,6 +26,10 @@
   & + .result-item-container {
     margin-top: 7px;
   }
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .icon + .title,
