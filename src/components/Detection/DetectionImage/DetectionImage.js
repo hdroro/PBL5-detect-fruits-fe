@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevLeftIcon, ChevRightIcon } from "../../Icon/Icon";
 import "./DetectionImage.scss";
 
@@ -13,6 +13,9 @@ function DetectionImage({ images }) {
     console.log("image");
     imageRef.current.src = `data:image/png;base64,${image_path}`;
   };
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [images]);
   const moveToNextImage = () => {
     if (currentIndex < images["list_images"].length - 1) {
       setCurrentIndex(currentIndex + 1);

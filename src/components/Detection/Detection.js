@@ -47,7 +47,7 @@ function Detection() {
   };
 
   return (
-    <div className="detection-container pt-5 pb-3">
+    <div className="detection-container pt-5">
       <div className="container mt-5">
         <div className="row">
           <div class="col-lg-9 col-md-9 col-sm-12 mb-3">
