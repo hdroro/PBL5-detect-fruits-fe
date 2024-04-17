@@ -9,7 +9,17 @@
     }
 
     .back-left {
-      transition: transform 0.3s ease;
+      &.disable {
+        opacity: 0.5;
+        transition: none;
+      }
+      &.disable:hover {
+        opacity: 0.5;
+        transform: none;
+        .icon-action {
+          pointer-events: none;
+        }
+      }
     }
 
     .back-left:hover {
@@ -18,7 +28,17 @@
     }
 
     .back-right {
-      transition: transform 0.3s ease;
+      &.disable {
+        opacity: 0.5;
+        transition: none;
+      }
+      &.disable:hover {
+        opacity: 0.5;
+        transform: none;
+        .icon-action {
+          pointer-events: none;
+        }
+      }
     }
 
     .back-right:hover {
