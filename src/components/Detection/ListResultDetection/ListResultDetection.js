@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Checkicon,
   ChevDownIcon,
@@ -35,7 +35,7 @@ function ListResultDetection({ keyList, handleOnChangeImage, imageData }) {
                 key={index}
                 handleOnChangeImage={() => handleOnChangeImage(item)}
                 leftIcon={
-                  imageData[item].result == 0 ? (
+                  imageData[item].result === 0 ? (
                     <Checkicon color="#15CB53" />
                   ) : (
                     <CloseIcon color="red" />
@@ -44,7 +44,7 @@ function ListResultDetection({ keyList, handleOnChangeImage, imageData }) {
               >
                 <div className="d-flex flex-column">
                   <span className="text-start">
-                    {imageData[item].result == 0 ? "Đạt" : "Không đạt"}
+                    {imageData[item].result === 0 ? "Đạt" : "Không đạt"}
                   </span>
                   <span className="time">
                     {imageData[item]["time_predict"].split(".")[0]}

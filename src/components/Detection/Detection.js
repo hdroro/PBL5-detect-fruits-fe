@@ -5,7 +5,7 @@ import ListResultDetection from "./ListResultDetection/ListResultDetection";
 
 import database from "../../config/firebaseConfig";
 import { useEffect, useState } from "react";
-import { getDatabase, ref, child, get, onValue } from "firebase/database";
+import { ref, child, get, onValue } from "firebase/database";
 
 function Detection() {
   const [imageData, setImageData] = useState();
@@ -50,7 +50,7 @@ function Detection() {
     <div className="detection-container pt-5 pb-3">
       <div className="container mt-5">
         <div className="row">
-          <div class="col-lg-9 col-md-9 col-sm-12">
+          <div class="col-lg-9 col-md-9 col-sm-12 mb-3">
             <ContainerWrapper>
               <div className="p-4 pb-0">
                 <div className="time-detection text-center mb-4 ">
@@ -63,14 +63,14 @@ function Detection() {
                 <DetectionImage images={currentImages && currentImages} />
                 <div className="final-result text-center mt-3">
                   <b>Kết quả: </b>
-                  {currentImages && currentImages.result == 0
+                  {currentImages && currentImages.result === 0
                     ? "Đạt"
                     : "Không đạt"}
                 </div>
               </div>
             </ContainerWrapper>
           </div>
-          <div className="col-lg-3 col-md-3 col-sm-0">
+          <div className="col-lg-3 col-md-3 col-sm-0 ">
             <ContainerWrapper>
               <ListResultDetection
                 handleOnChangeImage={handleOnChangeImage}

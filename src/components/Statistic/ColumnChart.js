@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
+import {
+  getLast4Days,
+  getLast4Months,
+  getLast4Weeks,
+  getLast4Years,
+} from "../../utils/formatDatetime";
 
 function ColumnChart(props) {
-  const seriesData = [
-    {
-      name: "Đạt",
-      data: [44, 55, 57, 56],
-      color: "#3bc992e6",
-    },
-    {
-      name: "Không đạt",
-      data: [76, 85, 101, 98],
-      color: "#7140809c",
-    },
-  ];
-
-  const [chartData, setChartData] = useState(() => ({
-    series: seriesData,
+  const [chartData, setChartData] = useState({
+    series: [],
     options: {
       chart: {
         type: "bar",
-        height: 350,
+        height: 300,
       },
       plotOptions: {
         bar: {
@@ -39,13 +32,13 @@ function ColumnChart(props) {
       },
       xaxis: {
         title: {
-          text: "Tháng",
+          text: "",
         },
-        categories: ["Feb", "Mar", "Apr", "May"],
+        categories: [],
       },
       yaxis: {
         title: {
-          text: "Số lượng quả cam (quả)",
+          text: "Number of oranges",
         },
       },
       fill: {
@@ -64,7 +57,64 @@ function ColumnChart(props) {
         },
       },
     },
-  }));
+  });
+
+  useEffect(() => {
+    const currentDate = new Date();
+    let xLabel = "";
+    let categories = [];
+
+    const seriesData = [
+      {
+        name: "Đạt",
+        data: props.totalFreshFilter,
+        color: "#3bc992e6",
+      },
+      {
+        name: "Không đạt",
+        data: props.totalRottenFilter,
+        color: "#7140809c",
+      },
+    ];
+
+    switch (props.valueOption) {
+      case "1":
+        xLabel = "Ngày";
+        categories = getLast4Days(currentDate).map(
+          (day) => `${day}/${currentDate.getMonth() + 1}`
+        );
+        break;
+      case "2":
+        xLabel = "Tuần";
+        categories = getLast4Weeks(currentDate);
+        break;
+      case "3":
+        xLabel = "Tháng";
+        categories = getLast4Months(currentDate);
+        break;
+      case "4":
+        xLabel = "Năm";
+        categories = getLast4Years(currentDate).map((year) => `${year}`);
+        break;
+      default:
+        break;
+    }
+
+    setChartData((prevData) => ({
+      ...prevData,
+      series: seriesData,
+      options: {
+        ...prevData.options,
+        xaxis: {
+          ...prevData.options.xaxis,
+          title: {
+            text: xLabel,
+          },
+          categories: categories,
+        },
+      },
+    }));
+  }, [props]);
 
   return (
     <div>
