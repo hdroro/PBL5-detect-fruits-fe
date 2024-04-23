@@ -22,7 +22,7 @@
   }
 
   &:hover {
-    overflow: auto; /* Hiển thị thanh cuộn khi hover vào */
+    overflow: auto;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -31,7 +31,6 @@
     height: 80px;
   }
 
-  /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: #c5c4c4;
   }

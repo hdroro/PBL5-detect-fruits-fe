@@ -5,10 +5,6 @@ import "./DetectionImage.scss";
 function DetectionImage({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const imageRef = useRef();
-  // const changeSrcImage1 = () => {
-  //   console.log("imaeg1");
-  //   imageRef.current.src = `data:image/png;base64,${images.image1}`;
-  // };
   const changeSrcImage = (image_path) => {
     console.log("image");
     imageRef.current.src = `data:image/png;base64,${image_path}`;

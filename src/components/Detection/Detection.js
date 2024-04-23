@@ -1,5 +1,4 @@
 import ContainerWrapper from "../ContainerWrapper/ContainerWrapper";
-import "./Detection.scss";
 import DetectionImage from "./DetectionImage/DetectionImage";
 import ListResultDetection from "./ListResultDetection/ListResultDetection";
 
