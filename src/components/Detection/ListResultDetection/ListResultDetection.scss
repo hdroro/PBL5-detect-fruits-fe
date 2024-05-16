@@ -13,6 +13,11 @@
     font-size: 11px;
     justify-content: end;
   }
+  .update {
+    color: #e8b12d;
+    font-size: 14px;
+    text-decoration: underline;
+  }
 }
 
 //Result Item
@@ -29,6 +34,9 @@
 
   &:hover {
     opacity: 0.8;
+  }
+  &.chosen {
+    background-color: #7373733d;
   }
 }
 

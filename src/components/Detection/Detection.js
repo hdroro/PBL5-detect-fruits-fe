@@ -4,31 +4,47 @@ import DetectionImage from "./DetectionImage/DetectionImage";
 import ListResultDetection from "./ListResultDetection/ListResultDetection";
 
 import database from "../../config/firebaseConfig";
-import { useEffect, useState } from "react";
-import { getDatabase, ref, child, get, onValue } from "firebase/database";
+import { useEffect, useRef, useState } from "react";
+import {
+  getDatabase,
+  ref,
+  child,
+  get,
+  onValue,
+  push,
+  update,
+} from "firebase/database";
+import { EditIcon } from "../Icon/Icon";
 
 function Detection() {
+  const [currentKey, setCurrentKey] = useState();
+  const [cbbResult, setCbbResult] = useState();
   const [imageData, setImageData] = useState();
   const [imageKeyList, setImageKeyList] = useState([]);
   const [currentImages, setCurrentImages] = useState(null);
+  const checkUpdateRef = useRef(0);
 
+  const dbRef = ref(database);
   useEffect(() => {
-    const dbRef = ref(database);
-
     onValue(dbRef, (sns) => {
       get(child(dbRef, "images_info"))
         .then((snapshot) => {
+          console.log(currentKey);
           if (snapshot.exists()) {
             const imageInfo = snapshot.val();
-            console.log(imageInfo);
             if (imageInfo) {
               setImageData(imageInfo);
               const keyList = Object.keys(imageInfo).reverse();
-              // console.log(keyList);
               setImageKeyList(keyList);
 
-              // Lấy hình ảnh mới nhất từ danh sáchs
-              setCurrentImages(imageInfo[keyList[0]]);
+              if (+checkUpdateRef.current === 1) {
+                checkUpdateRef.current = 0;
+              } else {
+                // console.log("image info not: ");
+                setCurrentImages(imageInfo[keyList[0]]);
+                setCurrentKey(keyList[0]);
+                setCbbResult(imageInfo[keyList[0]].result);
+              }
             } else {
               setImageKeyList([]);
               setCurrentImages(null);
@@ -43,14 +59,33 @@ function Detection() {
 
   const handleOnChangeImage = (key) => {
     console.log("change key:s", key);
+    setCurrentKey(key);
     setCurrentImages(imageData[key]);
+    setCbbResult(imageData[key].result);
+  };
+
+  const handleOnUpdate = () => {
+    const data = imageData[currentKey];
+
+    data.result = Number(cbbResult);
+    data.update = Number(1);
+    checkUpdateRef.current = 1;
+    console.log("currentKey", currentKey);
+    setCurrentKey(currentKey);
+    update(child(dbRef, `/images_info/${currentKey}`), data)
+      .then(() => {
+        console.log("Dữ liệu đã được cập nhật thành công!");
+      })
+      .catch((error) => {
+        console.error("Lỗi khi cập nhật dữ liệu:", error);
+      });
   };
 
   return (
-    <div className="detection-container pt-5 pb-3">
+    <div className="detection-container pt-5 ">
       <div className="container mt-5">
         <div className="row">
-          <div class="col-lg-9 col-md-9 col-sm-12">
+          <div className="col-lg-9 col-md-9 col-sm-12">
             <ContainerWrapper>
               <div className="p-4 pb-0">
                 <div className="time-detection text-center mb-4 ">
@@ -63,9 +98,24 @@ function Detection() {
                 <DetectionImage images={currentImages && currentImages} />
                 <div className="final-result text-center mt-3">
                   <b>Kết quả: </b>
-                  {currentImages && currentImages.result == 0
-                    ? "Đạt"
-                    : "Không đạt"}
+                  <select
+                    style={{ marginTop: "0.5rem" }}
+                    className="cbb-result"
+                    value={cbbResult}
+                    onChange={(e) => {
+                      setCbbResult(e.target.value);
+                      console.log(e.target.value);
+                    }}
+                  >
+                    <option value={0}>Đạt</option>
+                    <option value={1}>Không đạt</option>
+                  </select>
+                  <EditIcon
+                    onClick={handleOnUpdate}
+                    className={"edit-icon"}
+                    width="1.3rem"
+                    height="1.3rem"
+                  />
                 </div>
               </div>
             </ContainerWrapper>

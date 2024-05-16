@@ -49,7 +49,6 @@ function Login() {
   const handleLogin = () => {
     const check = isValidInputs();
     if (check) {
-      console.log("email", email, "password", passWord);
       if (email === "admin@gmail.com" && passWord === "admin@123") {
         toast.success("Login successfully!");
         history.push("/devices");
