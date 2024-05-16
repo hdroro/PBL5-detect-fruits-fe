@@ -61,9 +61,6 @@ function NavHeader() {
                     <NavLink className="nav-link dark" to="/detection">
                       Nhận dạng
                     </NavLink>
-                    <NavLink className="nav-link dark" to="/devices">
-                      Thiết bị
-                    </NavLink>
                     <NavLink className="nav-link dark" to="/statistics">
                       Thống kê
                     </NavLink>
