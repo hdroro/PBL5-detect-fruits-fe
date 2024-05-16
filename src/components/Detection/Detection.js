@@ -5,15 +5,7 @@ import ListResultDetection from "./ListResultDetection/ListResultDetection";
 
 import database from "../../config/firebaseConfig";
 import { useEffect, useRef, useState } from "react";
-import {
-  getDatabase,
-  ref,
-  child,
-  get,
-  onValue,
-  push,
-  update,
-} from "firebase/database";
+import { ref, child, get, onValue, update } from "firebase/database";
 import { EditIcon } from "../Icon/Icon";
 
 function Detection() {
@@ -40,7 +32,6 @@ function Detection() {
               if (+checkUpdateRef.current === 1) {
                 checkUpdateRef.current = 0;
               } else {
-                // console.log("image info not: ");
                 setCurrentImages(imageInfo[keyList[0]]);
                 setCurrentKey(keyList[0]);
                 setCbbResult(imageInfo[keyList[0]].result);
@@ -58,7 +49,6 @@ function Detection() {
   }, []);
 
   const handleOnChangeImage = (key) => {
-    console.log("change key:s", key);
     setCurrentKey(key);
     setCurrentImages(imageData[key]);
     setCbbResult(imageData[key].result);
@@ -70,7 +60,6 @@ function Detection() {
     data.result = Number(cbbResult);
     data.update = Number(1);
     checkUpdateRef.current = 1;
-    console.log("currentKey", currentKey);
     setCurrentKey(currentKey);
     update(child(dbRef, `/images_info/${currentKey}`), data)
       .then(() => {
@@ -90,7 +79,7 @@ function Detection() {
               <div className="p-4 pb-0">
                 <div className="time-detection text-center mb-4 ">
                   <span className="fst-italic">
-                    Thời gian nhận diện:{" "}
+                    Thời gian nhận dạng:{" "}
                     {currentImages &&
                       currentImages["time_predict"].split(".")[0]}
                   </span>

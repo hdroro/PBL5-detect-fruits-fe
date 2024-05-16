@@ -24,7 +24,7 @@ function ListResultDetection({ keyList, handleOnChangeImage, imageData }) {
         className="title-results d-flex gap-2 justify-content-center align-items-center"
         onClick={() => handleToggleListResult()}
       >
-        <span>Kết quả nhận diện</span>{" "}
+        <span>Kết quả nhận dạng</span>{" "}
         {isToggleListResult ? (
           <ChevDownIcon />
         ) : (

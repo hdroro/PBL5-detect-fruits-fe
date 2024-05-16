@@ -59,7 +59,7 @@ function NavHeader() {
                 {!isHomePage ? (
                   <>
                     <NavLink className="nav-link dark" to="/detection">
-                      Nhận diện
+                      Nhận dạng
                     </NavLink>
                     <NavLink className="nav-link dark" to="/devices">
                       Thiết bị
