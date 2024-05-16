@@ -51,7 +51,7 @@ function Login() {
     if (check) {
       if (email === "admin@gmail.com" && passWord === "admin@123") {
         toast.success("Login successfully!");
-        history.push("/devices");
+        history.push("/detection");
       } else {
         toast.error("The email address or password is incorrect!");
       }
