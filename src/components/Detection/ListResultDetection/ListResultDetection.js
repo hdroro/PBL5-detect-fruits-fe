@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Checkicon,
   ChevDownIcon,
@@ -42,7 +42,7 @@ function ListResultDetection({ keyList, handleOnChangeImage, imageData }) {
                 handleOnClick={handleOnClick}
                 handleOnChangeImage={() => handleOnChangeImage(item)}
                 leftIcon={
-                  imageData[item].result == 0 ? (
+                  imageData[item].result === 0 ? (
                     <Checkicon color="#15CB53" />
                   ) : (
                     <CloseIcon color="red" />
